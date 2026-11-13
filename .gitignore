@@ -8,12 +8,16 @@ venv/
 
 # 输出与报告（含敏感配置 gui_config.json，勿提交）
 sf6_agent/output/
-report_demo.html
-examples/report_real.html
+report_*.html
+examples/report_*.html
 
 # 临时抽帧/裁剪图片
 examples/frames/
 examples/*.png
+
+# 教学视频学习临时产物（音频/转写/知识）
+tools/tmp/
+*.knowledge.json
 
 # 本地配置
 *.local.json

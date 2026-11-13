@@ -14,6 +14,7 @@ from typing import List, Optional
 from .frame_data import CharacterFrameData, FrameDataLibrary
 from .knowledge import render
 from .models import ContactResult, Exchange, Finding, FindingType, Severity
+from .tactic_knowledge import tip_for
 
 
 class Analyzer:
@@ -32,9 +33,10 @@ class Analyzer:
         findings: List[Finding] = []
         for ex in exchanges:
             findings.extend(self._analyze_exchange(ex))
-        # 重新编号
+        # 重新编号，并附加战术知识库的概念级指导
         for i, f in enumerate(findings, start=1):
             f.finding_id = i
+            f.tactic_tip = tip_for(f.finding_type.value)
         return findings
 
     def _analyze_exchange(self, ex: Exchange) -> List[Finding]:

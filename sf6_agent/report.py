@@ -145,6 +145,8 @@ def _render_card(f: Finding, match, fps) -> str:
     color = TYPE_COLORS.get(f.finding_type.value, "#888")
     sev_color = SEV_COLORS[f.severity.value]
     player_name = match.get("p1_char", "P1") if f.player == 1 else match.get("p2_char", "P2")
+    tactic_row = (f'<div class="row tactic"><span class="k">战术</span>'
+                  f'<span class="v">{html.escape(f.tactic_tip)}</span></div>') if f.tactic_tip else ""
     return f'''
 <article class="card" id="finding-{f.finding_id}"
          data-severity="{f.severity.value}" data-type="{f.finding_type.value}">
@@ -158,6 +160,7 @@ def _render_card(f: Finding, match, fps) -> str:
   <div class="row"><span class="k">失误分析</span><span class="v">{html.escape(f.description)}</span></div>
   <div class="row"><span class="k">机会点</span><span class="v">{html.escape(f.opportunity)}</span></div>
   <div class="row solution"><span class="k">解法</span><span class="v">{html.escape(f.solution)}</span></div>
+  {tactic_row}
 </article>'''
 
 
@@ -181,6 +184,7 @@ def _finding_dict(f: Finding, match) -> dict:
         "start_frame": f.start_frame,
         "end_frame": f.end_frame,
         "frame_advantage": f.frame_advantage,
+        "tactic_tip": f.tactic_tip,
     }
 
 
@@ -224,6 +228,8 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
   .row .k {{ color: var(--muted); font-weight: 600; }}
   .row.solution {{ background: #fef2f2; border-radius: 8px; padding: 10px 12px; margin-top: 6px; }}
   .row.solution .k {{ color: #b91c1c; }}
+  .row.tactic {{ background: #eef4ff; border-radius: 8px; padding: 10px 12px; margin-top: 6px; }}
+  .row.tactic .k {{ color: #1d4ed8; }}
   .empty {{ text-align: center; color: var(--muted); padding: 40px; }}
   .highlight {{ animation: pulse 1.6s ease-out; }}
   @keyframes pulse {{ 0% {{ box-shadow: 0 0 0 4px rgba(229,72,77,.35); }} 100% {{ box-shadow: 0 0 0 0 rgba(229,72,77,0); }} }}

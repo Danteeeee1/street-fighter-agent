@@ -115,3 +115,4 @@ class Finding:
     opportunity: str
     solution: str
     frame_advantage: Optional[int] = None
+    tactic_tip: str = ""           # 战术知识库附加的概念级指导
