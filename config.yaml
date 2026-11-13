@@ -1,0 +1,25 @@
+# SF6 街霸录像分析 agent 配置
+
+game:
+  name: "Street Fighter 6"
+  fps: 60                 # SF6 固定 60fps，1 帧 = 1/60 秒
+
+analysis:
+  # 确反判定阈值：进攻方被防后帧优 <= 防守方最快起手时视为「可确反」
+  punish_window_frames: 3
+  # 波次切分：接触点向前/向后扩展的帧数
+  exchange_window_before: 30
+  exchange_window_after: 45
+  # 相邻事件合并为同一波次的最大帧间隔
+  exchange_merge_gap: 20
+
+vision:
+  # provider: heuristic | mock | llm
+  provider: "heuristic"
+  # 血条区域（归一化坐标 [x, y, w, h]，相对画面宽高）
+  p1_health_region: [0.02, 0.02, 0.40, 0.05]
+  p2_health_region: [0.58, 0.02, 0.40, 0.05]
+  # 计时器区域
+  timer_region: [0.46, 0.01, 0.08, 0.06]
+  # 帧优显示区域（训练模式帧meter，需按你的录屏布局标定）
+  frame_advantage_region: [0.40, 0.08, 0.20, 0.06]

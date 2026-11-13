@@ -1,0 +1,21 @@
+# 核心依赖（帧数据/分析引擎/报告生成仅需以下最小依赖）
+PyYAML>=6.0
+
+# 本地 Web 图形界面（python -m sf6_agent.webapp）
+flask>=3.0
+
+# 视频抽帧：需要本机安装 ffmpeg（推荐）
+# 或使用 imageio-ffmpeg 自动附带二进制：pip install imageio-ffmpeg
+# imageio-ffmpeg>=0.4
+
+# 画面识别（启发式 CV）：读取血条/计时器时启用
+numpy>=1.24
+opencv-python>=4.8
+
+# 可选：OCR（帧数据条数字，尽力而为；帧优读取建议用视觉大模型）
+# rapidocr-onnxruntime>=1.3
+
+# 可选：多模态 LLM 画面理解（推荐，读帧优/命中/防御/空振最可靠）
+openai>=1.0
+# 配置：环境变量 OPENAI_BASE_URL / OPENAI_API_KEY / SF6_VISION_MODEL
+# 支持任意 OpenAI 兼容接口：通义千问VL / 豆包 / 智谱GLM-4V / Kimi / DeepSeek / OpenAI / Claude等

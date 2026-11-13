@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# 输出与报告（含敏感配置 gui_config.json，勿提交）
+sf6_agent/output/
+report_demo.html
+examples/report_real.html
+
+# 临时抽帧/裁剪图片
+examples/frames/
+examples/*.png
+
+# 本地配置
+*.local.json
+.DS_Store
